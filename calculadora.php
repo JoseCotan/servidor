@@ -8,45 +8,45 @@
 </head>
 
 <body>
+    <?php require 'auxiliar.php' ?>
+
+    <form action="calculadora.php" method="get">
+        <label for="op1">Operando 1:</label>
+        <input type="text" name="op1" id="op1" value="<?=isset($_GET['op1']) ? $_GET['op1'] : '' ?>"><br>
+        <label for="op2">Operando 2:</label>
+        <input type="text" name="op2" id="op2" value="<?=isset($_GET['op2']) ? $_GET['op2'] : '' ?>"><br>
+        <label for="op">Operación:</label>
+        <select name="op" id="op" ><br>>
+            <option value='+'<?= isset($_GET['op']) && $_GET['op'] == '+'?>>+</option>
+            <option value='-'<?= isset($_GET['op']) && $_GET['op'] == '-'?>>-</option>
+            <option value='*'<?= isset($_GET['op']) && $_GET['op'] == '*' ? 'selected' : ''; ?>>*</option>
+            <option value='/'<?= isset($_GET['op']) && $_GET['op'] == '/'?>>/</option>
+        </select><br>
+
+        <button type="submit">Calcular</button>
+    </form>
     <?php
     $errores = [];
-    $op1 = $_GET['op1'];
 
-    if (!is_numeric($op1)) {
-        $errores[] = 'El primer operando es incorrecto.';
+    if (isset($_GET['op1'], $_GET['op2'], $_GET['op'])) {
+        $op1 = $_GET['op1'];
+        $op2 = $_GET['op2'];
+        $op  = $_GET['op'];
+        comprobar_op1($op1, $errores);
+        comprobar_op2($op2, $errores);
+        comprobar_op($op, $errores);
+        comprobar_division_cero($op2, $op, $errores);
     }
 
-    $op2 = $_GET['op2'];
-
-    if (!is_numeric($op2)) {
-        $errores[] = 'El segundo operando es incorrecto.';
-    }
-
-    $op  = $_GET['op'];
-
-    if ($op != '+' && $op != '-' && $op != '*' && $op != '/') :
-        $errores[] = 'El operador es incorrecto.';
-    endif;
-
-    if (empty($errores)):
-        switch ($op) {
-            case '+':
-                $res = $op1 + $op2;
-                break;
-            case '-':
-                $res = $op1 - $op2;
-                break;
-            case '*':
-                $res = $op1 * $op2;
-                break;
-            case '/':
-                $res = $op1 / $op2;
-                break;
+    if (isset($op1, $op2, $op)) {
+        if (empty($errores)) {
+            $res = calcular($op1, $op2, $op);
+            mostrar_resultado($res);
+        } else {
+            mostrar_errores($errores);
         }
-    endif;
-    for ($i = 0; $i < count($errores); $i++) {
-        $errores[$i];
     }
     ?>
 </body>
+
 </html>
