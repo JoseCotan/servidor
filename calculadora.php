@@ -17,10 +17,10 @@
         <input type="text" name="op2" id="op2" value="<?=isset($_GET['op2']) ? $_GET['op2'] : '' ?>"><br>
         <label for="op">Operación:</label>
         <select name="op" id="op" ><br>>
-            <option value='+'<?= isset($_GET['op']) && $_GET['op'] == '+'?>>+</option>
-            <option value='-'<?= isset($_GET['op']) && $_GET['op'] == '-'?>>-</option>
+            <option value='+'<?= isset($_GET['op']) && $_GET['op'] == '+' ? 'selected' : ''; ?>>+</option>
+            <option value='-'<?= isset($_GET['op']) && $_GET['op'] == '-' ? 'selected' : ''; ?>>-</option>
             <option value='*'<?= isset($_GET['op']) && $_GET['op'] == '*' ? 'selected' : ''; ?>>*</option>
-            <option value='/'<?= isset($_GET['op']) && $_GET['op'] == '/'?>>/</option>
+            <option value='/'<?= isset($_GET['op']) && $_GET['op'] == '/' ? 'selected' : ''; ?>>/</option>
         </select><br>
 
         <button type="submit">Calcular</button>
