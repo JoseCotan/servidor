@@ -1,0 +1,8 @@
+for mejorado: foreach ($errores as [$K] => $V) {}
+                                    KEY   VALUE
+
+in_array($op, ['+', '-', '*', '/']);
+
+isset($x); --> true si $x existe y es != null;
+
+require --> carga otro fichero PHP, normalmente para funciones auxiliares
