@@ -6,3 +6,7 @@ in_array($op, ['+', '-', '*', '/']);
 isset($x); --> true si $x existe y es != null;
 
 require --> carga otro fichero PHP, normalmente para funciones auxiliares
+
+compact('x', 'y') --> Por cada variable, compact() busca una variable con ese nombre en la tabla de símbolos actual y las añade al array de salida de modo que el nombre de la variable se convierte en la clave y el contenido de la variable se convierte en el valor para esa clave.
+
+extract('x') --> Importa variables desde un array a la tabla de símbolos actual.

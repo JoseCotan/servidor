@@ -8,19 +8,22 @@
 </head>
 
 <body>
-    <?php require 'auxiliar.php' ?>
+    <?php require 'auxiliar.php' ;?>
+
+
 
     <form action="calculadora.php" method="get">
         <label for="op1">Operando 1:</label>
-        <input type="text" name="op1" id="op1" value="<?=isset($_GET['op1']) ? $_GET['op1'] : '' ?>"><br>
+        <input type="text" name="op1" id="op1" value="<?=isset($_GET['op1']) ? $_GET['op1'] : null ?>"><br>
         <label for="op2">Operando 2:</label>
-        <input type="text" name="op2" id="op2" value="<?=isset($_GET['op2']) ? $_GET['op2'] : '' ?>"><br>
+        <input type="text" name="op2" id="op2" value="<?=isset($_GET['op2']) ? $_GET['op2'] : null ?>"><br>
         <label for="op">Operación:</label>
         <select name="op" id="op" ><br>>
-            <option value='+'<?= isset($_GET['op']) && $_GET['op'] == '+' ? 'selected' : ''; ?>>+</option>
-            <option value='-'<?= isset($_GET['op']) && $_GET['op'] == '-' ? 'selected' : ''; ?>>-</option>
-            <option value='*'<?= isset($_GET['op']) && $_GET['op'] == '*' ? 'selected' : ''; ?>>*</option>
-            <option value='/'<?= isset($_GET['op']) && $_GET['op'] == '/' ? 'selected' : ''; ?>>/</option>
+            <?php foreach (OPS as $operadores) {
+                ?><option value='<?php $operadores?>' <?= isset($_GET['op']) && $_GET['op'] == $operadores ? 'selected' : null; ?>> <?php $operadores ?></option>
+                <?php
+            }
+            ?>
         </select><br>
 
         <button type="submit">Calcular</button>

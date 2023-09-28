@@ -1,4 +1,6 @@
 <?php
+
+const OPS = ['+', '-', '*', '/'];
 function calcular($op1, $op2, $op)
 {
     switch ($op) {
@@ -47,7 +49,7 @@ function comprobar_op2($op2, &$errores)
 
 function comprobar_op($op, &$errores)
 {
-    if (!in_array($op, ['+', '-', '*', '/'])) {
+    if (!in_array($op, OPS)) {
         $errores[] = 'La operación es incorrecta.';
     }
 }
